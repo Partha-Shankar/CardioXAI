@@ -130,10 +130,10 @@ def render_clinical_recommendations(risk_level: str):
     }
     color, text = recs.get(risk_level, ("#1C1C1E", "No recommendations available."))
     st.markdown(f"""
-    <div style="background-color: {color}15; border-left: 4px solid {color}; padding: 16px; border-radius: 8px; margin-top: 16px; margin-bottom: 16px;">
-        <div style="color: {color}; font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;">Clinical Recommendation</div>
-        <div style="color: #1C1C1E; font-size: 0.95rem;">{text}</div>
-    </div>
+<div style="background-color: {color}15; border-left: 4px solid {color}; padding: 16px; border-radius: 8px; margin-top: 16px; margin-bottom: 16px;">
+<div style="color: {color}; font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;">Clinical Recommendation</div>
+<div style="color: #1C1C1E; font-size: 0.95rem;">{text}</div>
+</div>
     """, unsafe_allow_html=True)
 
 def render_radar_comparison(patient_dict: dict):
@@ -201,12 +201,12 @@ def render_simulator(ensemble, input_dict):
         res = ensemble.predict_proba(sim_df)
         
         st.markdown(f"""
-        <div style="background:#F2F2F7; padding: 12px; border-radius: 8px; margin-top: 12px;">
-            <div style="color: #636366; font-size: 0.9rem;">Simulated Risk</div>
-            <div style="font-size: 1.5rem; font-weight: 700; color: #1C1C1E;">
+<div style="background:#F2F2F7; padding: 12px; border-radius: 8px; margin-top: 12px;">
+<div style="color: #636366; font-size: 0.9rem;">Simulated Risk</div>
+<div style="font-size: 1.5rem; font-weight: 700; color: #1C1C1E;">
                 {res['ensemble_prob']*100:.1f}% — <span style="color: {res['risk_color']}">{res['risk_level']}</span>
-            </div>
-        </div>
+</div>
+</div>
         """, unsafe_allow_html=True)
 
 
@@ -373,12 +373,12 @@ def page_risk_assessment(ensemble: CardioEnsemble) -> None:
             )
         else:
             st.markdown("""
-            <div class="cxai-card" style="text-align:center; padding:64px 24px;">
-                <div style="font-size:4rem; margin-bottom:12px; animation: pulse 2s infinite;">🫀</div>
-                <div style="font-size:1.1rem; font-weight:600; color:#1C1C1E; margin-bottom:8px;">Ready for Analysis</div>
-                <div style="font-size:0.9rem; color:#636366;">Complete the form and click<br><strong>Analyze Risk →</strong> to get results</div>
-                <style>@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }</style>
-            </div>
+<div class="cxai-card" style="text-align:center; padding:64px 24px;">
+<div style="font-size:4rem; margin-bottom:12px; animation: pulse 2s infinite;">🫀</div>
+<div style="font-size:1.1rem; font-weight:600; color:#1C1C1E; margin-bottom:8px;">Ready for Analysis</div>
+<div style="font-size:0.9rem; color:#636366;">Complete the form and click<br><strong>Analyze Risk →</strong> to get results</div>
+<style>@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }</style>
+</div>
             """, unsafe_allow_html=True)
 
     if st.session_state.prediction_done and st.session_state.shap_data:
@@ -470,15 +470,15 @@ def page_dataset_explorer() -> None:
 
     st.markdown(
         """
-        <div class="cxai-card" style="display:flex; align-items:center; gap:16px; padding:16px 24px;">
-            <div style="font-size:2rem;">🏥</div>
-            <div>
-                <div style="font-weight:600; color:#1C1C1E; font-size:0.95rem;">UCI Heart Disease Dataset</div>
-                <div style="font-size:0.82rem; color:#636366; margin-top:2px;">
+<div class="cxai-card" style="display:flex; align-items:center; gap:16px; padding:16px 24px;">
+<div style="font-size:2rem;">🏥</div>
+<div>
+<div style="font-weight:600; color:#1C1C1E; font-size:0.95rem;">UCI Heart Disease Dataset</div>
+<div style="font-size:0.82rem; color:#636366; margin-top:2px;">
                     Sourced via HuggingFace Datasets (<code>imodels/heart_disease</code>) · Cleveland Clinic Foundation
-                </div>
-            </div>
-        </div>
+</div>
+</div>
+</div>
         """,
         unsafe_allow_html=True,
     )
@@ -535,24 +535,24 @@ def page_about() -> None:
     st.markdown("<br>", unsafe_allow_html=True)
     
     st.markdown("""
-        <div class="cxai-card">
-            <div style="font-size: 1.1rem; font-weight: 600; color: #1C1C1E; margin-bottom: 8px;">🤗 HuggingFace Model Integration</div>
-            <div style="color: #636366; line-height: 1.6;">
+<div class="cxai-card">
+<div style="font-size: 1.1rem; font-weight: 600; color: #1C1C1E; margin-bottom: 8px;">🤗 HuggingFace Model Integration</div>
+<div style="color: #636366; line-height: 1.6;">
                 TabPFN (Prior-Labs/TabPFN) — A transformer-based Prior-Fitted Network for 
                 tabular classification. Unlike tree-based methods, TabPFN performs in-context meta-learning 
                 trained on millions of synthetic datasets, achieving strong performance without hyperparameter 
                 tuning. Accessed via HuggingFace Hub and integrated as the 4th ensemble member.
-            </div>
-        </div>
+</div>
+</div>
     """, unsafe_allow_html=True)
 
     st.markdown("### Methodology Overview")
     col_left, col_right = st.columns(2, gap="medium")
     with col_left:
         st.markdown("""
-            <div class="cxai-card">
-            <div style="font-weight:600; margin-bottom:12px;">🏗️ System Architecture</div>
-            <pre style="background:#F2F2F7; border-radius:10px; padding:14px; font-size:0.75rem; color:#1C1C1E; overflow-x:auto;">
+<div class="cxai-card">
+<div style="font-weight:600; margin-bottom:12px;">🏗️ System Architecture</div>
+<pre style="background:#F2F2F7; border-radius:10px; padding:14px; font-size:0.75rem; color:#1C1C1E; overflow-x:auto;">
 Data (UCI Heart Disease)
          ↓
   Preprocessing
@@ -568,21 +568,21 @@ Data (UCI Heart Disease)
   Weighted Ensemble (AUC)
          ↓
   Risk Level & SHAP
-            </pre>
-            </div>
+</pre>
+</div>
             """, unsafe_allow_html=True)
 
     with col_right:
         st.markdown("""
-            <div class="cxai-card">
-            <div style="font-weight:600; margin-bottom:12px;">✨ Key Contributions</div>
-            <ul style="font-size:0.9rem; color:#1C1C1E; line-height:1.8; padding-left:18px;">
-                <li><b>Confidence-weighted ensemble</b> outperforming individual learners</li>
-                <li><b>Patient-level SHAP explanations</b> for clinical trust</li>
-                <li><b>Four-tier risk stratification</b> aligned with practice guidelines</li>
-                <li><b>TabPFN transformer integration</b> for robust zero-shot meta-learning</li>
-            </ul>
-            </div>
+<div class="cxai-card">
+<div style="font-weight:600; margin-bottom:12px;">✨ Key Contributions</div>
+<ul style="font-size:0.9rem; color:#1C1C1E; line-height:1.8; padding-left:18px;">
+<li><b>Confidence-weighted ensemble</b> outperforming individual learners</li>
+<li><b>Patient-level SHAP explanations</b> for clinical trust</li>
+<li><b>Four-tier risk stratification</b> aligned with practice guidelines</li>
+<li><b>TabPFN transformer integration</b> for robust zero-shot meta-learning</li>
+</ul>
+</div>
             """, unsafe_allow_html=True)
 
     st.markdown("### IEEE Citation (BibTeX)")
@@ -662,14 +662,14 @@ def main() -> None:
 
     st.sidebar.markdown(
         """
-        <div style="padding:12px 0 20px; border-bottom:1px solid #D1D1D6; margin-bottom:20px;">
-            <div style="font-size:1.3rem; font-weight:700; color:#1C1C1E; letter-spacing:-0.5px;">
+<div style="padding:12px 0 20px; border-bottom:1px solid #D1D1D6; margin-bottom:20px;">
+<div style="font-size:1.3rem; font-weight:700; color:#1C1C1E; letter-spacing:-0.5px;">
                 🫀 CardioXAI
-            </div>
-            <div style="font-size:0.78rem; color:#636366; margin-top:4px;">
+</div>
+<div style="font-size:0.78rem; color:#636366; margin-top:4px;">
                 Clinical Risk Assessment System
-            </div>
-        </div>
+</div>
+</div>
         """,
         unsafe_allow_html=True,
     )
@@ -691,15 +691,15 @@ def main() -> None:
         best_auc = max(m.get("auc_roc", 0) for m in metrics.values())
         st.sidebar.markdown(
             f"""
-            <div style="margin:16px 0 8px; padding:10px 14px; background:#F0FFF4;
+<div style="margin:16px 0 8px; padding:10px 14px; background:#F0FFF4;
                         border:1px solid #BBF7D0; border-radius:12px;">
-                <div style="font-size:0.72rem; color:#166534; font-weight:600;">
+<div style="font-size:0.72rem; color:#166534; font-weight:600;">
                     ✅ Models Loaded
-                </div>
-                <div style="font-size:0.82rem; color:#1C1C1E; margin-top:2px;">
+</div>
+<div style="font-size:0.82rem; color:#1C1C1E; margin-top:2px;">
                     Best CV AUC-ROC: <b>{best_auc:.3f}</b>
-                </div>
-            </div>
+</div>
+</div>
             """,
             unsafe_allow_html=True,
         )

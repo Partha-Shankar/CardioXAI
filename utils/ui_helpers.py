@@ -210,26 +210,26 @@ def section_header(title: str, subtitle: str = "") -> None:
 
 def section_card(title: str, icon: str = ""):
     st.markdown(f"""
-    <div style="padding-top:16px; padding-bottom:8px; border-top: 1px solid #D1D1D6; margin-top:16px; margin-bottom: 8px;">
-        <div style="font-size:1.05rem; font-weight:600; color:#1C1C1E;">
+<div style="padding-top:16px; padding-bottom:8px; border-top: 1px solid #D1D1D6; margin-top:16px; margin-bottom: 8px;">
+<div style="font-size:1.05rem; font-weight:600; color:#1C1C1E;">
             {icon} {title}
-        </div>
-    </div>
+</div>
+</div>
     """, unsafe_allow_html=True)
 
 def render_hero(title: str = "CardioXAI", subtitle: str = "") -> None:
     st.markdown(f"""
-    <div class="cxai-card" style="text-align:center; padding: 32px; background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FF 100%);">
-        <div style="font-size:0.9rem; font-weight:600; color:#007AFF; margin-bottom:8px; letter-spacing:0.5px;">
+<div class="cxai-card" style="text-align:center; padding: 32px; background: linear-gradient(135deg, #FFFFFF 0%, #F0F4FF 100%);">
+<div style="font-size:0.9rem; font-weight:600; color:#007AFF; margin-bottom:8px; letter-spacing:0.5px;">
             CardioXAI · Clinical Risk Assessment
-        </div>
-        <h1 style="font-size:2.4rem; font-weight:700; color:#1C1C1E; letter-spacing:-0.5px; margin-bottom:8px; margin-top:0;">
+</div>
+<h1 style="font-size:2.4rem; font-weight:700; color:#1C1C1E; letter-spacing:-0.5px; margin-bottom:8px; margin-top:0;">
             Heart Disease Risk Prediction
-        </h1>
-        <p style="font-size:1.05rem; color:#636366; margin:0;">
+</h1>
+<p style="font-size:1.05rem; color:#636366; margin:0;">
             4-model ensemble · SHAP explainability · Clinical stratification
-        </p>
-    </div>
+</p>
+</div>
     """, unsafe_allow_html=True)
 
 def render_risk_result(prob: float, risk_level: str, color: str, confidence: float):
@@ -237,34 +237,34 @@ def render_risk_result(prob: float, risk_level: str, color: str, confidence: flo
     conf_pct = int(confidence * 100)
     
     st.markdown(f"""
-    <div class="cxai-card" style="text-align:center;">
-        <div style="font-size:1.1rem; font-weight:600; color:#1C1C1E; margin-bottom:20px;">
+<div class="cxai-card" style="text-align:center;">
+<div style="font-size:1.1rem; font-weight:600; color:#1C1C1E; margin-bottom:20px;">
             Risk Assessment Result
-        </div>
-        <div style="display:flex; justify-content:center; align-items:center; flex-direction:column; gap:8px;">
-            <div style="width:140px; height:140px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:8px solid {color}; background:#FBFBFD;">
-                <span style="font-size:2.5rem; font-weight:700; color:#1C1C1E;">{pct}%</span>
-            </div>
-            <div style="font-size:1.2rem; font-weight:600; color:{color}; margin-top:8px;">
+</div>
+<div style="display:flex; justify-content:center; align-items:center; flex-direction:column; gap:8px;">
+<div style="width:140px; height:140px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:8px solid {color}; background:#FBFBFD;">
+<span style="font-size:2.5rem; font-weight:700; color:#1C1C1E;">{pct}%</span>
+</div>
+<div style="font-size:1.2rem; font-weight:600; color:{color}; margin-top:8px;">
                 {risk_level} Risk
-            </div>
-            <div style="font-size:0.9rem; color:#636366;">
+</div>
+<div style="font-size:0.9rem; color:#636366;">
                 {pct}% probability of heart disease
-            </div>
-            <div style="font-size:0.85rem; font-weight:500; color:#636366; margin-top:8px; padding: 4px 12px; background:#F2F2F7; border-radius: 8px;">
+</div>
+<div style="font-size:0.85rem; font-weight:500; color:#636366; margin-top:8px; padding: 4px 12px; background:#F2F2F7; border-radius: 8px;">
                 Confidence: ±{100 - conf_pct}%
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
     """, unsafe_allow_html=True)
 
 def render_metric_card(label: str, value: str, sublabel: str = "", color: str = "#007AFF"):
     st.markdown(f"""
-    <div class="cxai-metric-mini">
-        <div class="val" style="color:{color};">{value}</div>
-        <div class="lbl">{label}</div>
-        <div class="sublbl">{f'{sublabel}' if sublabel else ''}</div>
-    </div>
+<div class="cxai-metric-mini">
+<div class="val" style="color:{color};">{value}</div>
+<div class="lbl">{label}</div>
+<div class="sublbl">{f'{sublabel}' if sublabel else ''}</div>
+</div>
     """, unsafe_allow_html=True)
 
 def render_model_bars(model_probs: dict):
@@ -280,41 +280,41 @@ def render_model_bars(model_probs: dict):
         pct = int(prob * 100)
         display_name = name + " 🤗" if name == "TabPFN" else name
         bars_html += f"""
-        <div style="display:flex; align-items:center; margin-bottom:12px; gap: 12px;">
-            <div style="width:120px; font-size:0.9rem; font-weight:500; color:#1C1C1E; text-align:right;">
+<div style="display:flex; align-items:center; margin-bottom:12px; gap: 12px;">
+<div style="width:120px; font-size:0.9rem; font-weight:500; color:#1C1C1E; text-align:right;">
                 {display_name}
-            </div>
-            <div style="flex:1; background:#E5E5EA; border-radius:980px; height:10px; overflow:hidden;">
-                <div style="width:{pct}%; background:{color}; height:100%; border-radius:980px;"></div>
-            </div>
-            <div style="width:40px; font-size:0.9rem; font-weight:600; color:#636366;">
+</div>
+<div style="flex:1; background:#E5E5EA; border-radius:980px; height:10px; overflow:hidden;">
+<div style="width:{pct}%; background:{color}; height:100%; border-radius:980px;"></div>
+</div>
+<div style="width:40px; font-size:0.9rem; font-weight:600; color:#636366;">
                 {pct}%
-            </div>
-        </div>
+</div>
+</div>
         """
     
     st.markdown(f"""
-    <div class="cxai-card">
-        <div style="font-size:1.1rem; font-weight:600; color:#1C1C1E; margin-bottom:16px; text-align:center;">
+<div class="cxai-card">
+<div style="font-size:1.1rem; font-weight:600; color:#1C1C1E; margin-bottom:16px; text-align:center;">
             Model Agreement
-        </div>
+</div>
         {bars_html}
-    </div>
+</div>
     """, unsafe_allow_html=True)
 
 def render_shap_legend() -> None:
     st.markdown(
         """
-        <div class="cxai-shap-legend">
-            <div class="cxai-shap-legend-item">
-                <div class="cxai-shap-dot" style="background:#FF3B30;"></div>
+<div class="cxai-shap-legend">
+<div class="cxai-shap-legend-item">
+<div class="cxai-shap-dot" style="background:#FF3B30;"></div>
                 Increases disease risk
-            </div>
-            <div class="cxai-shap-legend-item">
-                <div class="cxai-shap-dot" style="background:#34C759;"></div>
+</div>
+<div class="cxai-shap-legend-item">
+<div class="cxai-shap-dot" style="background:#34C759;"></div>
                 Decreases disease risk
-            </div>
-        </div>
+</div>
+</div>
         """,
         unsafe_allow_html=True,
     )
@@ -339,11 +339,11 @@ def render_citation(text: str) -> None:
 def sidebar_footer() -> None:
     st.sidebar.markdown(
         """
-        <div style="position:fixed; bottom:20px; left:0; width:260px;
+<div style="position:fixed; bottom:20px; left:0; width:260px;
                     text-align:center; font-size:0.72rem; color:#AEAEB2;
                     border-top:1px solid #E5E5EA; padding-top:10px;">
-            v2.0 · CardioXAI
-        </div>
+            CardioXAI<br>Developed by Partha Shankar
+</div>
         """,
         unsafe_allow_html=True,
     )
